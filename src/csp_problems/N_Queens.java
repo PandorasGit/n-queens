@@ -1,21 +1,37 @@
 package csp_problems;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class N_Queens implements CSPProblem<String,Integer>{
+public class N_Queens implements CSPProblem<Integer,Boolean>{
+
+    private final Map<Integer, Variable<Integer,Boolean>> allVariables;
+
+    private final Map<Integer, Set<Integer>> neighbors = new HashMap<>();
+    public N_Queens(Integer board_size) {
+        allVariables = getAllVariables();
+
+        for (int i=0; i<board_size;i++){
+            Set<Integer> rowNeighbors = new HashSet<>();
+            for (int j=0; j<board_size;j++){
+                
+            }
+        }
+    }
+
     @Override
-    public Map<String, Variable<String, Integer>> getAllVariables() {
+    public Map<Integer, Variable<Integer, Boolean>> getAllVariables() {
         return null;
     }
 
     @Override
-    public List<String> getNeighborsOf(String vName) {
+    public List<Integer> getNeighborsOf(Integer vName) {
         return null;
     }
 
+
+
     @Override
-    public List<String> getAssigned() {
+    public List<Integer> getAssigned() {
         return null;
     }
 }
