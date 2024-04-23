@@ -7,7 +7,8 @@ public class N_Queens implements CSPProblem<String,Boolean>{
     private final Map<String, Variable<String,Boolean>> allVariables;
 
     private final Map<String, Set<String>> neighbors = new HashMap<>();
-    public N_Queens(Integer board_size) {
+    private int board_size;
+    public N_Queens(int board_size) {
         allVariables = getAllVariables();
 
         for (int i=0; i<board_size;i++){
@@ -81,8 +82,8 @@ public class N_Queens implements CSPProblem<String,Boolean>{
 
     public List<String> getAssigned() {
         List<String> assigned = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i < board_size; i++) {
+            for (int j = 0; j < board_size; j++) {
                 if (allVariables.get(i + String.valueOf(j)).domain().size() == 1) {
                     assigned.add(i + String.valueOf(j));
                 }
