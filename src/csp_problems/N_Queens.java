@@ -70,9 +70,8 @@ public class N_Queens implements CSPProblem<String,Boolean>{
         }
     }
 
-    @Override
     public Map<String, Variable<String, Boolean>> getAllVariables() {
-        return null;
+        return allVariables;
     }
 
     public List<String> getNeighborsOf(String name){
@@ -80,8 +79,15 @@ public class N_Queens implements CSPProblem<String,Boolean>{
     }
 
 
-    @Override
     public List<String> getAssigned() {
-        return null;
+        List<String> assigned = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (allVariables.get(i + String.valueOf(j)).domain().size() == 1) {
+                    assigned.add(i + String.valueOf(j));
+                }
+            }
+        }
+        return assigned;
     }
 }
