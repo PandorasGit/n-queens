@@ -108,6 +108,7 @@ public class Sudoku implements CSPProblem<String,Integer> {
                 if (allVariables.get(i+String.valueOf(j)).domain().size() > 1) {
                     System.out.print("[ ]");
                 } else {
+
                     System.out.print("["+allVariables.get(i+String.valueOf(j)).domain().get(0)+"]");
                 }
             }
