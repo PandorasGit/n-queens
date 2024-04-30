@@ -3,7 +3,9 @@ package csp_solutions;
 import core_algorithms.BacktrackingSearch;
 import csp_problems.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boolean>{
@@ -23,8 +25,10 @@ public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boole
         Boolean removed = false;
         if (getAllVariables().get(head).domain().size() == 1){
             if (getAllVariables().get(tail).domain().contains(getAllVariables().get(head).domain().get(0))) {
-                getAllVariables().get(tail).domain().remove(getAllVariables().get(head).domain().get(0));
-                removed = true;
+                if (getAllVariables().get(tail).domain().size() > 1){
+                    getAllVariables().get(tail).domain().remove(getAllVariables().get(head).domain().get(0));
+                    removed = true;
+                }
             }
         }
         return removed;
@@ -36,19 +40,14 @@ public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boole
      *         null if all variables have been assigned
      */
     public String selectUnassigned() {
-        String var = null;
+        List<String> vars = new ArrayList<>();
         for (String variable : getAllVariables().keySet()) {
             if (!assigned(variable)) {
-                if (var != null) {
-                    if (getAllVariables().get(variable).domain().size() < getAllVariables().get(var).domain().size()) {
-                        var = variable;
-                    }
-                } else {
-                    var = variable;
-                }
+                vars.add(variable);
             }
         }
-        return var;
+        Random random = new Random();
+        return vars.get(random.nextInt(vars.size()-1));
     }
 
     /**

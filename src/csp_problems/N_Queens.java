@@ -73,7 +73,7 @@ public class N_Queens implements CSPProblem<String,Boolean>{
 
     public Map<String, Variable<String, Boolean>> getAllVariables() {
         Map<String,Variable<String,Boolean>> allVariables = new HashMap<>();
-        List<Boolean> defaultDomain = List.of(false, true);
+        List<Boolean> defaultDomain = List.of(true, false);
         for (int i=0; i<9; i++) {
             for (int j=0; j<9; j++) {
                 String name = i +String.valueOf(j);

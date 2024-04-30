@@ -2,6 +2,7 @@ package core_algorithms;
 
 import csp_problems.CSPProblem;
 import csp_problems.CSPProblem.Variable;
+import csp_problems.N_Queens;
 
 import java.util.*;
 
@@ -107,14 +108,17 @@ public abstract class BacktrackingSearch <X, V> {
      * An implementation of the backtracking search with maintaining arc consistency (MAC)
      * @return
      */
+
+
     public boolean search(){
         X n = selectUnassigned();
 
-        if(n == null){
+        if(assigned.size()>9){
             return true;
         }
         assigned.add(n);
-       // System.out.println(n+", "+assigned.size());
+       System.out.println(n+", "+assigned.size());
+
         while(!allVariables.get(n).domain().isEmpty()) {
             //select a value to be assigned to this variable
             V value = allVariables.get(n).domain().remove(0);
