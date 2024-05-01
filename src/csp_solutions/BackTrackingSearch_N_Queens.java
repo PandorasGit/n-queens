@@ -10,8 +10,11 @@ import java.util.Random;
 
 public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boolean>{
 
+    private CSPProblem problem;
+
     public BackTrackingSearch_N_Queens(N_Queens problem){
         super(problem);
+        this.problem = problem;
     }
 
     /**
@@ -40,6 +43,11 @@ public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boole
      *         null if all variables have been assigned
      */
     public String selectUnassigned() {
+        for (CSPProblem.Variable x: getAllVariables().values()){
+            if (x.domain().size() == 1 && x.domain().contains(true)){
+                blockNeighbors(x);
+            }
+        }
         List<String> vars = new ArrayList<>();
         for (String variable : getAllVariables().keySet()) {
             if (!assigned(variable)) {
@@ -47,7 +55,25 @@ public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boole
             }
         }
         Random random = new Random();
-        return vars.get(random.nextInt(vars.size()-1));
+        if (vars.size() > 1){
+            return vars.get(random.nextInt(vars.size()-1));
+        } else if (vars.size() == 1) {
+            return vars.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    private void blockNeighbors(CSPProblem.Variable x) {
+        System.out.println(problem.getNeighborsOf(x.name()));
+        for (Object y: problem.getNeighborsOf(x.name())){
+            if (getAllVariables().get(y).domain().size() == 2){
+                getAllVariables().get(y).domain().remove(true);
+            } else if (getAllVariables().get(y).domain().contains(true)){
+                getAllVariables().get(y).domain().remove(true);
+                getAllVariables().get(y).domain().add(false);
+            }
+        }
     }
 
     /**

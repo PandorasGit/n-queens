@@ -113,11 +113,11 @@ public abstract class BacktrackingSearch <X, V> {
     public boolean search(){
         X n = selectUnassigned();
 
-        if(assigned.size()>9){
+        if(n == null){
             return true;
         }
         assigned.add(n);
-       System.out.println(n+", "+assigned.size());
+        System.out.println(n+", "+assigned.size());
 
         while(!allVariables.get(n).domain().isEmpty()) {
             //select a value to be assigned to this variable

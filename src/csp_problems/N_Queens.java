@@ -48,7 +48,7 @@ public class N_Queens implements CSPProblem<String,Boolean>{
             }
             for(int j=0; j<this.board_size; j++){
                 String name = j + String.valueOf(j);
-                neighbors.put(name, new HashSet<>(diagonalNeighbors));
+                neighbors.get(name).addAll(diagonalNeighbors);
             }
         }
         for (int i=0; i<this.board_size;i++){
@@ -62,7 +62,7 @@ public class N_Queens implements CSPProblem<String,Boolean>{
             }
             for(int j=0; j<this.board_size; j++){
                 String name = j + String.valueOf(j);
-                neighbors.put(name, new HashSet<>(diagonalNeighbors));
+                neighbors.get(name).addAll(diagonalNeighbors);
             }
         }
         for(Map.Entry<String,Set<String>> e : neighbors.entrySet()){
