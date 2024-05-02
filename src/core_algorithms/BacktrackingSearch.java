@@ -117,8 +117,6 @@ public abstract class BacktrackingSearch <X, V> {
             return true;
         }
         assigned.add(n);
-        System.out.println(n+", "+assigned.size());
-
         while(!allVariables.get(n).domain().isEmpty()) {
             //select a value to be assigned to this variable
             V value = allVariables.get(n).domain().remove(0);

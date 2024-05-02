@@ -65,7 +65,6 @@ public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boole
     }
 
     private void blockNeighbors(CSPProblem.Variable x) {
-        System.out.println(problem.getNeighborsOf(x.name()));
         for (Object y: problem.getNeighborsOf(x.name())){
             if (getAllVariables().get(y).domain().size() == 2){
                 getAllVariables().get(y).domain().remove(true);
@@ -80,7 +79,7 @@ public class BackTrackingSearch_N_Queens extends BacktrackingSearch<String,Boole
      * @param args (no command-line argument is needed to run this program)
      */
     public static void main(String[] args) {
-        N_Queens problem = new N_Queens(9);
+        N_Queens problem = new N_Queens(8);
         BackTrackingSearch_N_Queens agent = new BackTrackingSearch_N_Queens(problem);
         problem.printPuzzle(problem.getAllVariables());
         if(agent.initAC3() && agent.search()){
