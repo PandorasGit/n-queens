@@ -86,7 +86,6 @@ public class N_Queens implements CSPProblem<String,Boolean>{
                 neighbors.get(name).addAll(diagCopy);
             }
         }
-
         for(Map.Entry<String,Set<String>> e : neighbors.entrySet()){
             e.getValue().remove(e.getKey());
             //   System.out.println(e.getValue().size());
